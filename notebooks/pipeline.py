@@ -3,7 +3,7 @@ import traceback
 from config import *
 from utils import *
 
-
+# Log File Path
 LOG_FILE = "../logs/pipeline.log"
 
 # Configure logging to both console and file
