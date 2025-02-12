@@ -1,7 +1,6 @@
 .DS_Store
 .idea
 Dockerfile
-data
 logs
 notebooks/__pycache__
 tests/__pycache__
