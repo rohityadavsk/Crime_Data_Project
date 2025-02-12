@@ -1,7 +1,7 @@
 from pyspark.sql import SparkSession
 import os
 
-DATA_FILE_PATH = '../data/input/Crime_Data_Dev.csv'
+DATA_FILE_PATH = '/Users/rohit/local-data-engineering/data/input/Crime_Data_Dev.csv'
 
 # Environment settings
 os.environ["SPARK_LOCAL_IP"] = "127.0.0.1"

@@ -1,13 +1,9 @@
 import pytest
-import  sys
-import os
 from pyspark.sql import SparkSession
 
-# Add the 'notebooks' directory to sys.path
-sys.path.append(os.path.abspath(os.path.join(os.getcwd(), '..', 'notebooks')))
 
-from config import *
-from utils import *
+from notebooks.config import *
+from notebooks.utils import *
 
 # Create a Spark session for testing
 @pytest.fixture(scope="session")
