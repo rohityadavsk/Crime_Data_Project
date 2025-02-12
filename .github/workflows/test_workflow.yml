@@ -26,3 +26,10 @@ jobs:
           pip install -r requirements.txt
       - name: Testing the data
         run: pytest tests/test_pipeline.py
+
+  Dev:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      name: print hi
+      run: echo "print hi"
