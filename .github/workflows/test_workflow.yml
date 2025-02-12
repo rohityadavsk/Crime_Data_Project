@@ -31,5 +31,5 @@ jobs:
     needs: test
     runs-on: ubuntu-latest
     steps:
-      name: print hi
-      run: echo "print hi"
+      - name: print hi
+        run: echo "print hi"
