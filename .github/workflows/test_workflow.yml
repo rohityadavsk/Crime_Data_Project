@@ -20,3 +20,7 @@ jobs:
         with:
           spark-version: '3.5.3'
           hadoop-version: '3'
+      - name: Install Dependencies
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
