@@ -1,5 +1,21 @@
 name: Test Workflow
-on: [push, workflow_dispatch]
+on:
+  pull_request:
+    types:
+      - opened
+    branches:
+      - main
+      - 'dev-*'
+      - 'dev/**'
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+      - 'dev-*' # dev-new dev-this-is-new
+      - 'dev/**' # dev/new_feat/new_change
+    paths-ignore:
+      - '.github/workflows/*' # If i push the change in workflow folder, the github workflow won't start
+
 jobs:
   test:
     runs-on: ubuntu-latest
