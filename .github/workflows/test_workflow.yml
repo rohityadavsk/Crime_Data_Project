@@ -18,6 +18,8 @@ on:
 #    paths:
 #      - 'notebooks/**' # Workflow will start only, if we do changes in these paths
 
+# We can skip the workflow using [skip ci] in commit message
+
 jobs:
   test:
     runs-on: ubuntu-latest
