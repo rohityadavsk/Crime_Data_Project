@@ -34,9 +34,6 @@ jobs:
         with:
           java-version: '21'
           distribution: temurin
-      - name: Install pytest xml
-        run: |
-          pip install pytest pytest-junitxml
       - name: Install Dependencies
         run: |
           pip install --upgrade pip
