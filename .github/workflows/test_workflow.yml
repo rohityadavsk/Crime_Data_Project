@@ -20,7 +20,11 @@ on:
 
 
 jobs:
-  test:
+  TEST:
+    environment: Testing
+    env:
+      #DATA_FILE_PATH: ${{ secrets.DATA_FILE_PATH }}
+      DATA_FILE_PATH: 'data/input/Crime_Data_Dev.csv'
     runs-on: ubuntu-latest
     steps:
       - name: Get Code
@@ -62,6 +66,10 @@ jobs:
         with:
           report_paths: 'test_results.xml'
           check_name: 'Pytest Results'
+
+      - name: Testing Data File Path
+        run: |
+          echo "Data File Path: $DATA_FILE_PATH"
 
   Dev:
     needs: test
