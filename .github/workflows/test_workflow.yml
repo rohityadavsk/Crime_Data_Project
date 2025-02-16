@@ -23,8 +23,9 @@ jobs:
   TEST:
     environment: Testing
     env:
+      DATA_FILE_PATH: ${{ vars.DATA_FILE_PATH }}
       #DATA_FILE_PATH: ${{ secrets.DATA_FILE_PATH }}
-      DATA_FILE_PATH: 'data/input/Crime_Data_Dev.csv'
+#      DATA_FILE_PATH: 'data/input/Crime_Data_Dev.csv'
     runs-on: ubuntu-latest
     steps:
       - name: Get Code
