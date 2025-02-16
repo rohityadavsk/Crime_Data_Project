@@ -65,7 +65,7 @@ jobs:
       - name: Publish test results in GitHub UI
         uses: mikepenz/action-junit-report@v3
         with:
-          report_paths: 'test_results.xml'
+          report_paths: 'test_resultss.xml'
           check_name: 'Pytest Results'
 
       - name: Testing Data File Path and Name
