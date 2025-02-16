@@ -73,7 +73,7 @@ jobs:
         run: echoo "wrong spell of echo"
 
       - name: Testing Data File Path and Name
-        if: steps.bad_code.outcome == 'failure'
+        if: failure() && steps.bad_code.outcome == 'failure'
         run: |
           echo "Data File Path: $DATA_FILE_PATH"
           echo "Data File Name: $DATA_FILE_NAME"
