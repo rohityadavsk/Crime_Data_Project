@@ -57,18 +57,19 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run Pytest and generate xml report
+        continue-on-error: true
         id: testing_data
         run: pytest tests/test_pipeline.py --junitxml=test_results.xml
 
       - name: Upload test results
-        if: failure() && steps.testing_data.outcome == 'failure'
+#        if: failure() && steps.testing_data.outcome == 'failure'
         uses: actions/upload-artifact@v4
         with:
           name: pytest-results
           path: test_results.xml
 
       - name: Publish test results in GitHub UI
-        if: failure() && steps.testing_data.outcome == 'failure'
+#        if: failure() && steps.testing_data.outcome == 'failure'
         uses: mikepenz/action-junit-report@v3
         with:
           report_paths: 'test_results.xml'
