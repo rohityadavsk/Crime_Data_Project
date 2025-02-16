@@ -24,8 +24,8 @@ jobs:
     environment: Testing
     env:
       DATA_FILE_PATH: ${{ vars.DATA_FILE_PATH }}
-      #DATA_FILE_PATH: ${{ secrets.DATA_FILE_PATH }}
-#      DATA_FILE_PATH: 'data/input/Crime_Data_Dev.csv'
+      DATA_FILE_NAME: ${{ secrets.DATA_FILE_NAME }}
+
     runs-on: ubuntu-latest
     steps:
       - name: Get Code
@@ -68,12 +68,13 @@ jobs:
           report_paths: 'test_results.xml'
           check_name: 'Pytest Results'
 
-      - name: Testing Data File Path
+      - name: Testing Data File Path and Name
         run: |
           echo "Data File Path: $DATA_FILE_PATH"
+          echo "Data File Name: $DATA_FILE_NAME"
 
   Dev:
-    needs: test
+    needs: TEST
     runs-on: ubuntu-latest
     steps:
       - name: Get Code
@@ -87,5 +88,5 @@ jobs:
         run: |
           pip install --upgrade pip
           pip install -r requirements.txt
-      - name: print hi
-        run: echo "print hi"
+      - name: print Test File Name
+        run: echo "print $DATA_FILE_NAME"
