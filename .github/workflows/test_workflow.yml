@@ -45,11 +45,13 @@ jobs:
 #          spark-version: '3.5.3'
 #          hadoop-version: '3'
       - name: Cache Dependencies
+        id: cache_check
         uses: actions/cache@v4
         with:
           path: ~/.cache/pip
           key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
       - name: Install Dependencies
+        if: steps.cache_check.outputs.cache-hit != 'true'
         run: |
           pip install --upgrade pip
           pip install -r requirements.txt
@@ -84,11 +86,13 @@ jobs:
       - name: Get Code
         uses: actions/checkout@v4
       - name: Cache Dependencies
+        id: cache_check
         uses: actions/cache@v4
         with:
           path: ~/.cache/pip
           key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
       - name: Install Dependencies
+        if: steps.cache_check.outputs.cache-hit != 'true'
         run: |
           pip install --upgrade pip
           pip install -r requirements.txt
