@@ -53,27 +53,26 @@ jobs:
         run: |
           pip install --upgrade pip
           pip install -r requirements.txt
+
       - name: Run Pytest and generate xml report
+        id: testing_data
         run: pytest tests/test_pipeline.py --junitxml=test_results.xml
 
       - name: Upload test results
+        if: failure() && steps.testing_data.outcome == 'failure'
         uses: actions/upload-artifact@v4
         with:
           name: pytest-results
           path: test_results.xml
 
       - name: Publish test results in GitHub UI
+        if: failure() && steps.testing_data.outcome == 'failure'
         uses: mikepenz/action-junit-report@v3
         with:
           report_paths: 'test_results.xml'
           check_name: 'Pytest Results'
 
-      - name: Checking bad code
-        id: bad_code
-        run: echoo "wrong spell of echo"
-
       - name: Testing Data File Path and Name
-        if: failure() && steps.bad_code.outcome == 'failure'
         run: |
           echo "Data File Path: $DATA_FILE_PATH"
           echo "Data File Name: $DATA_FILE_NAME"

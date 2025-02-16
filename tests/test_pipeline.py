@@ -38,5 +38,8 @@ def test_read_csv_data(spark):
     # Check if DataFrame is not empty
     assert df.count() > 0
 
+def test_wrong_func(spark):
+    assert 1 == 2
+
 
 
