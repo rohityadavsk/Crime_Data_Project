@@ -1,7 +1,8 @@
 name: Matrix Workflow
 on:
-  push:
-    branch:
+  workflow-dispatch:
+#  push:
+#    branch:
 #      - main
 #      - 'dev*'
 
