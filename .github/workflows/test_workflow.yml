@@ -10,7 +10,7 @@ on:
   workflow_dispatch: # Even we are not using any option here but still we have to use colon for every trigger
   push:
     branches:
-#      - main
+      - main
       - 'dev-*' # dev-new dev-this-is-new
       - 'dev/**' # dev/new_feat/new_change
 #    paths-ignore:
@@ -79,6 +79,11 @@ jobs:
         run: |
           echo "Data File Path: $DATA_FILE_PATH"
           echo "Data File Name: $DATA_FILE_NAME"
+
+  Testing:
+    needs: TEST
+    uses: ./.github/workflows/reusable.yml
+
 
   Dev:
     needs: TEST
