@@ -85,6 +85,8 @@ jobs:
     uses: ./.github/workflows/reusable.yml
     with:
       artifact-name: pytest-results
+#    secrets:
+#      secret-name: ${{ secrets.SOME_SECRET }}
 
   Dev:
     needs: TEST
