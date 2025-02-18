@@ -10,7 +10,7 @@ on:
   workflow_dispatch: # Even we are not using any option here but still we have to use colon for every trigger
   push:
     branches:
-      - main
+#      - main
       - 'dev-*' # dev-new dev-this-is-new
       - 'dev/**' # dev/new_feat/new_change
 #    paths-ignore:
