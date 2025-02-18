@@ -83,7 +83,8 @@ jobs:
   Testing:
     needs: TEST
     uses: ./.github/workflows/reusable.yml
-
+    with:
+      artifact-name: pytest-results
 
   Dev:
     needs: TEST
