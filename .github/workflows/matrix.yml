@@ -11,6 +11,12 @@ jobs:
       matrix:
         Workspace: [Dev, UAT, Prod]
         Designation: [IT, Tax]
+        include:
+          - Workspace: Testing
+            Designation: IT
+        exclude:
+          - Workspace: Dev
+            Designation: Tax
     runs-on: ubuntu-latest
     steps:
       - name: Get Code
