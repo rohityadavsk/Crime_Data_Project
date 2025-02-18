@@ -88,6 +88,13 @@ jobs:
 #    secrets:
 #      secret-name: ${{ secrets.SOME_SECRET }}
 
+  Testing_reusable_output:
+    needs: Testing
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print Test Output
+        run: echo "${{ needs.Testing.outputs.test_output }}"
+
   Dev:
     needs: TEST
     runs-on: ubuntu-latest
