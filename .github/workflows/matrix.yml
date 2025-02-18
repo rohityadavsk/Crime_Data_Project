@@ -2,8 +2,8 @@ name: Matrix Workflow
 on:
   push:
     branch:
-      - main
-      - 'dev*'
+#      - main
+#      - 'dev*'
 
 jobs:
   build:
