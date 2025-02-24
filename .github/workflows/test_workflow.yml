@@ -46,9 +46,13 @@ jobs:
 #          hadoop-version: '3'
 
       - name: Load and cache dependencies
+        id: cache_action
         uses: ./.github/actions/cache-dependencies
         with:
-          owner_name: 'Sumit'
+          caching: 'true'
+
+      - name: Caching Output
+        run: echo "Caching - ${{ steps.cache_action.outputs.caching }}"
 
       - name: Run Pytest and generate xml report
         continue-on-error: true

@@ -1,26 +1,34 @@
 name: Cache Dependencies
 description: Use to cache and install dependencies
 inputs:
-  owner_name:
-    description: 'Name of owner'
+  caching:
+    description: 'Caching Flag'
     required: false
-    default: 'Rohit'
+    default: 'true'
+outputs:
+  caching:
+    description: 'Whether the cache was successful'
+    value: ${{ steps.cache_id.outputs.cache_checking }}
 runs:
   using: 'composite'
   steps:
-    - name: Name of owner
-      run: echo "${{ inputs.owner_name }}"
-      shell: bash
 
     - name: Cache Dependencies
+      if: inputs.caching == 'true'
       id: cache_check
       uses: actions/cache@v4
       with:
         path: ~/.cache/pip
         key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+
     - name: Install Dependencies
-      if: steps.cache_check.outputs.cache-hit != 'true'
+      if: steps.cache_check.outputs.cache-hit != 'true' || inputs.caching != 'true'
       run: |
         pip install --upgrade pip
         pip install -r requirements.txt
+      shell: bash
+
+    - name: Caching success check
+      id: cache_id
+      run: echo "cache_checking='${{ Success }}'" >> $GITHUB_OUTPUT
       shell: bash
