@@ -1,8 +1,17 @@
 name: Cache Dependencies
 description: Use to cache and install dependencies
+inputs:
+  owner_name:
+    description: 'Name of owner'
+    required: false
+    default: 'Rohit'
 runs:
   using: 'composite'
   steps:
+    - name: Name of owner
+      run: echo "${{ inputs.owner_name }}"
+      shell: bash
+
     - name: Cache Dependencies
       id: cache_check
       uses: actions/cache@v4
