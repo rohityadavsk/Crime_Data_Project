@@ -34,27 +34,19 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.10'
-      - name: Install Java
-        uses: actions/setup-java@v4
-        with:
-          java-version: '21'
-          distribution: temurin
+#      - name: Install Java
+#        uses: actions/setup-java@v4
+#        with:
+#          java-version: '21'
+#          distribution: temurin
 #      - name: Install Spark
 #        uses: vemonet/setup-spark@v1
 #        with:
 #          spark-version: '3.5.3'
 #          hadoop-version: '3'
-#      - name: Cache Dependencies
-#        id: cache_check
-#        uses: actions/cache@v4
-#        with:
-#          path: ~/.cache/pip
-#          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
-      - name: Install Dependencies
-#        if: steps.cache_check.outputs.cache-hit != 'true'
-        run: |
-          pip install --upgrade pip
-          pip install -r requirements.txt
+
+      - name: Load and cache dependencies
+        uses: ./.github/actions/cache-dependencies
 
       - name: Run Pytest and generate xml report
         continue-on-error: true
@@ -101,17 +93,10 @@ jobs:
     steps:
       - name: Get Code
         uses: actions/checkout@v4
-      - name: Cache Dependencies
-        id: cache_check
-        uses: actions/cache@v4
-        with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
-      - name: Install Dependencies
-        if: steps.cache_check.outputs.cache-hit != 'true'
-        run: |
-          pip install --upgrade pip
-          pip install -r requirements.txt
+
+      - name: Load and cache dependencies
+        uses: ./.github/actions/cache-dependencies
+
       - name: print Test File Name
         run: echo "print $DATA_FILE_NAME"
 
