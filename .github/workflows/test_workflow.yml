@@ -109,7 +109,7 @@ jobs:
         uses: ./.github/actions/cache-dependencies
 
       - name: print Test File Name
-        run: echo "print $DATA_FILE_NAME"
+        run: echoo "print $DATA_FILE_NAME" # Putting error intentionally to check if teams notification is working.
 
   Report:
     needs: [TEST, Dev]
