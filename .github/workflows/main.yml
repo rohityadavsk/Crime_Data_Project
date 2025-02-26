@@ -1,0 +1,14 @@
+name: Crime Data CICD
+on:
+  push:
+    branch:
+      - main
+
+  workflow_dispatch:
+
+jobs:
+  Testing:
+    runs-on: ubuntu-latest
+    steps:
+      name: Test workflow
+      run: echo "Hello World"
