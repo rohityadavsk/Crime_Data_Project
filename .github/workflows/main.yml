@@ -11,4 +11,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Test Workflow
-        run: echo "Hello World"
+        uses: ./.github/workflows/test.yml
+
+  Dev:
+    runs-on: ubuntu-latest
+    needs: Testing
+    steps:
+      - name: Dev
+        run: echo "hi"
