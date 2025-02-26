@@ -8,6 +8,9 @@ on:
 
 jobs:
   Testing:
+    environment: Dev
+    env:
+      RAW_DATA_PATH: ${{ secrets.Raw_Data_Path }}
     uses: ./.github/workflows/test.yml
 
   Dev:

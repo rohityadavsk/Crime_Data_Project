@@ -22,8 +22,8 @@ if __name__ == "__main__":
         logger.info("Starting Spark session...")
         spark = create_spark_session()
 
-        logger.info(f"Reading data from: {DATA_FILE_PATH}")
-        df_raw = read_csv_data(spark, DATA_FILE_PATH)
+        logger.info(f"Reading data from: {RAW_DATA_PATH}")
+        df_raw = read_csv_data(spark, RAW_DATA_PATH)
 
         logger.info("Standardizing column names...")
         df_standardized = standardize_column_names(df_raw)
