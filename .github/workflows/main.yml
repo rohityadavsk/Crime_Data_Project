@@ -1,17 +1,14 @@
 name: Crime Data CICD
 on:
   push:
-    branch:
+    branches:
       - main
 
   workflow_dispatch:
 
 jobs:
   Testing:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Test Workflow
-        uses: ./.github/workflows/test.yml
+    uses: ./.github/workflows/test.yml
 
   Dev:
     runs-on: ubuntu-latest
