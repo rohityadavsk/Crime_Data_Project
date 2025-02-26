@@ -1,7 +1,11 @@
 name: Testing
 
 on:
-  workflow_call
+  workflow_call:
+    inputs:
+      RAW_DATA_PATH:
+        required: true
+        type: string
 
 
 jobs:
