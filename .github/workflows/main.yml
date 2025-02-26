@@ -11,8 +11,8 @@ jobs:
     uses: ./.github/workflows/test.yml
     with:
       environ: Dev
+    secrets:
       raw_data_path: ${{ secrets.raw_data_path }}
-    secrets: inherit
 
   Dev:
     runs-on: ubuntu-latest
