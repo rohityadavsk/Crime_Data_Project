@@ -1,7 +1,7 @@
 from pyspark.sql import SparkSession
 import os
 
-RAW_DATA_PATH = os.environ.get("RAW_DATA_PATH")
+raw_data_path = os.environ.get("raw_data_path")
 
 # Environment settings
 os.environ["SPARK_LOCAL_IP"] = "127.0.0.1"

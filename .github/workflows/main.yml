@@ -8,10 +8,10 @@ on:
 
 jobs:
   Testing:
-    environment: Dev
+    environment: Test
     uses: ./.github/workflows/test.yml
     with:
-      RAW_DATA_PATH: ${{ secrets.Raw_Data_Path }}
+      raw_data_path: ${{ secrets.raw_data_path }}
 
 
   Dev:
