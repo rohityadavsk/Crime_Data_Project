@@ -31,6 +31,6 @@ jobs:
 
       - name: Test Data
         env:
-          raw_data_path: ${{ inputs.raw_data_path }}
+          raw_data_path: "data/input/Crime_Data_Dev.csv"
         run: pytest tests
           
