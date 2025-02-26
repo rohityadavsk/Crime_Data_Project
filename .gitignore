@@ -1,6 +1,0 @@
-.DS_Store
-.idea
-Dockerfile
-logs
-notebooks/__pycache__
-tests/__pycache__
