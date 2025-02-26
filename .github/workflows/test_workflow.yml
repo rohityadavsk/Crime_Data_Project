@@ -116,3 +116,18 @@ jobs:
           echo "Something went wrong"
           echo "${{ toJSON(github) }}"
 
+      - name: Send Teams Notification
+        run: |
+          JOB_NAME=""
+          if [[ "${{ needs.TEST.result }}" == "failure" ]]; then
+            JOB_NAME="TEST"
+          elif [[ "${{ needs.Dev.result }}" == "failure" ]]; then
+            JOB_NAME="Dev"
+          fi
+          
+          MESSAGE="⚠️ GitHub Actions Alert: **$JOB_NAME job failed** in [${{ github.repository }}](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})\n\n"
+          MESSAGE+="🛠️ **Reason**: Check the logs for details."
+          
+          curl -H "Content-Type: application/json" -d "{
+            'text': '$MESSAGE'
+          }" ${{ secrets.TEAMS_WEBHOOK_URL }}
