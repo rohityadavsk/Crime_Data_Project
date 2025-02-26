@@ -3,6 +3,10 @@ name: Testing
 on:
   workflow_call:
     inputs:
+      environ:
+        required: true
+        type: string
+
       raw_data_path:
         required: true
         type: string
@@ -26,5 +30,8 @@ jobs:
           pip install -r requirements.txt
 
       - name: Test Data
+        environment: ${{ inputs.environ }}
+        env:
+          raw_data_path: ${{ inputs.raw_data_path }}
         run: pytest tests
           

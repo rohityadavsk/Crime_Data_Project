@@ -8,11 +8,11 @@ on:
 
 jobs:
   Testing:
-    environment: Test
     uses: ./.github/workflows/test.yml
     with:
+      environ: Dev
       raw_data_path: ${{ secrets.raw_data_path }}
-
+    secrets: inherit
 
   Dev:
     runs-on: ubuntu-latest
