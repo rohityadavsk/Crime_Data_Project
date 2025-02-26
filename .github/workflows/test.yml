@@ -9,7 +9,6 @@ on:
     secrets:
       raw_data_path:
         required: true
-        type: string
 
 
 jobs:
