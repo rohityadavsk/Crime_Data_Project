@@ -10,5 +10,5 @@ jobs:
   Testing:
     runs-on: ubuntu-latest
     steps:
-      name: Test workflow
-      run: echo "Hello World"
+      - name: Test Workflow
+        run: echo "Hello World"
