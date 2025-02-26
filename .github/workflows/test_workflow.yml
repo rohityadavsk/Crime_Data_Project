@@ -54,6 +54,11 @@ jobs:
       - name: Caching Output
         run: echo "Caching - ${{ steps.cache_action.outputs.caching }}"
 
+      - name: Install Dependencies
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
+
       - name: Run Pytest and generate xml report
         continue-on-error: true
         id: testing_data
