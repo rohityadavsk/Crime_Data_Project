@@ -16,3 +16,6 @@ jobs:
 
       - name: Run YAML linter
         run: yamllint .
+
+      - name: Success
+        run: echo "Success"
