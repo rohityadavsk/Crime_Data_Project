@@ -1,5 +1,5 @@
 ---
-name: Pull Request Check
+name: Pre-Checks
 on:
   pull_request:
     branches:
