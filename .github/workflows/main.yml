@@ -13,11 +13,18 @@ jobs:
       environ: Dev
     secrets:
       raw_data_path: ${{ secrets.raw_data_path }}
-      target_path: ${{ secrets.target_path }}
 
   Dev:
     runs-on: ubuntu-latest
     needs: Testing
+    environment: Dev
+    env:
+      raw_data_path: ${{ secrets.raw_data_path }}
+      target_path: ${{ secrets.target_path }}
+
     steps:
-      - name: Dev
-        run: echo "hi"
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Transform and write data
+        run: python notebooks/pipeline.py

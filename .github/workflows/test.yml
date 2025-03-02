@@ -9,9 +9,6 @@ on:
     secrets:
       raw_data_path:
         required: true
-      target_path:
-        required: true
-
 
 jobs:
   Install_Dependencies:
@@ -33,10 +30,5 @@ jobs:
 
       - name: Test Data
         env:
-          raw_data_path: "data/input/Crime_Data_Dev.csv"
+          raw_data_path: ${{ secrets.raw_data_path }}
         run: pytest tests
-
-      - name: Transform and write data
-        env:
-          target_path: "data/output"
-        run: python notebooks/pipeline.py
