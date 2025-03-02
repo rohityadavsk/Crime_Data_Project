@@ -1,5 +1,5 @@
 from pyspark.sql.functions import *
-from notebooks.config import *
+from config import *
 from functools import wraps
 import time
 
