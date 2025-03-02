@@ -34,9 +34,12 @@ if __name__ == "__main__":
         record_count = df_transformed.count()
         logger.info(f"Total number of records: {record_count}")
 
+        logger.info(f"Is target path absolute? {os.path.isabs(target_path)}")
+        logger.info(f"Does target path exist before writing? {os.path.exists(target_path)}")
+
         if record_count > 0:
             logger.info("\nWriting data in delta format...")
-            write_data_delta(df_transformed)
+            write_data_delta(df_transformed, target_path)
         else:
             logger.warning("No records found after transformations.")
 

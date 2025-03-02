@@ -58,7 +58,7 @@ def perform_transformations(df: DataFrame):
 
 
 @time_it
-def write_data_delta(df: DataFrame):
+def write_data_delta(df: DataFrame, path: str):
     """Write transformed data in delta format"""
-    df.write.format('delta').mode('overwrite').save(target_path)
+    df.write.format('delta').mode('overwrite').save(path)
     print('Successfully wrote to delta format')
