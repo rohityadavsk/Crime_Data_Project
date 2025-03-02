@@ -15,8 +15,12 @@ jobs:
     env:
       raw_data_path: ${{ secrets.raw_data_path }}
     steps:
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+
       - name: Checkout code and install dependencies
-        uses: ./.github/actions/checkout-install-dependencies
+        uses: ./.github/actions/install-dependencies
 
       - name: Test Data
         run: pytest tests

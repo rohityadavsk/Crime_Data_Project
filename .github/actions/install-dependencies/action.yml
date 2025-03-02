@@ -1,11 +1,9 @@
 ---
-name: Checkout code and install dependencies
-description: Firstly checkout your code then install dependencies in your runner machine
+name: Install dependencies
+description: Install dependencies in your runner machine
 runs:
   using: composite
   steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
 
     - name: Set up Python
       uses: actions/setup-python@v4
