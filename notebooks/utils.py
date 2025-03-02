@@ -60,5 +60,9 @@ def perform_transformations(df: DataFrame):
 @time_it
 def write_data_delta(df: DataFrame, path: str):
     """Write transformed data in delta format"""
-    df.write.format('delta').mode('overwrite').save(path)
-    print('Successfully wrote to delta format')
+    abs_target_path = os.path.abspath(path)
+    os.makedirs(abs_target_path, exist_ok=True)  # Ensure the directory exists
+
+    logger.info(f"Resolved target path: {abs_target_path}")
+    df.write.format("delta").mode("overwrite").save(abs_target_path)
+    logger.info("Successfully wrote to delta format")
