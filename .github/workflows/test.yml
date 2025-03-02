@@ -40,4 +40,3 @@ jobs:
         env:
           target_path: "data/output"
           run: python notebooks/pipeline.py
-
