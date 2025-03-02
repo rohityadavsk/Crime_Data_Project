@@ -35,7 +35,7 @@ if __name__ == "__main__":
         logger.info(f"Total number of records: {record_count}")
 
         if record_count > 0:
-            logger.info("\nWriting data in delta format:")
+            logger.info("\nWriting data in delta format:  ")
             write_data_delta(df_transformed, target_path)
         else:
             logger.warning("No records found after transformations.")
