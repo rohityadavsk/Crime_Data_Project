@@ -1,8 +1,4 @@
 import pytest
-from pyspark.sql import SparkSession
-
-
-from notebooks.config import *
 from notebooks.utils import *
 
 # Create a Spark session for testing
