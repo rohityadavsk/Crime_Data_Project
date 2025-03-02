@@ -6,14 +6,13 @@ on:
       environ:
         required: true
         type: string
-      raw_data_path:
-        required: true
-        type: string
 
 jobs:
   Install_Dependencies:
     runs-on: ubuntu-latest
     environment: ${{ inputs.environ }}
+    env:
+      raw_data_path: ${{ secrets.raw_data_path }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -29,6 +28,4 @@ jobs:
           pip install -r requirements.txt
 
       - name: Test Data
-        env:
-          raw_data_path: ${{ inputs.raw_data_path }}
         run: pytest tests
