@@ -1,4 +1,5 @@
 from pyspark.sql.functions import *
+from config import *
 from functools import wraps
 import time
 
@@ -49,3 +50,10 @@ def perform_transformations(df: DataFrame):
         .withColumn('time_occ', date_format(expr("make_timestamp(1970, 1, 1, int(time_occ/100), time_occ%100, 0)"), 'h:mm a')) \
         .filter(col("vict_age").cast("int").isNotNull())
     return df_final
+
+
+@time_it
+def write_data_delta(df: DataFrame):
+    """Write transformed data in delta format"""
+    df.write.format('delta').mode('overwrite').save(target_path)
+    print('Successfully wrote to delta format')

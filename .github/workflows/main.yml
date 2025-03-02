@@ -13,6 +13,7 @@ jobs:
       environ: Dev
     secrets:
       raw_data_path: ${{ secrets.raw_data_path }}
+      target_path: ${{ secrets.target_path }}
 
   Dev:
     runs-on: ubuntu-latest

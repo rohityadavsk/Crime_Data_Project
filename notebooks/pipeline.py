@@ -29,17 +29,14 @@ if __name__ == "__main__":
         df_standardized = standardize_column_names(df_raw)
 
         logger.info("Performing transformations...")
-        df = perform_transformations(df_standardized)
+        df_transformed = perform_transformations(df_standardized)
 
-        logger.info("Schema after transformations:")
-        df.printSchema()
-
-        record_count = df.count()
+        record_count = df_transformed.count()
         logger.info(f"Total number of records: {record_count}")
 
         if record_count > 0:
-            logger.info("\nSample data:")
-            df.show(10, truncate=False)
+            logger.info("\nWriting data in delta format...")
+            write_data_delta(df_transformed)
         else:
             logger.warning("No records found after transformations.")
 
