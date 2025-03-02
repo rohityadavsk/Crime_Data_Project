@@ -1,3 +1,4 @@
+---
 name: Testing
 
 on:
@@ -14,18 +15,8 @@ jobs:
     env:
       raw_data_path: ${{ secrets.raw_data_path }}
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.12'
-
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
+      - name: Checkout code and install dependencies
+        uses: ./.github/actions/checkout-install-dependencies
 
       - name: Test Data
         run: pytest tests

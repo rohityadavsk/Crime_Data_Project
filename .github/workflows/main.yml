@@ -22,8 +22,8 @@ jobs:
       target_path: ${{ secrets.target_path }}
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - name: Checkout code and install dependencies
+        uses: ./.github/actions/checkout-install-dependencies
 
       - name: Transform and write data
         run: python notebooks/pipeline.py
