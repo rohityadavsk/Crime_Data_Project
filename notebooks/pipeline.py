@@ -40,9 +40,6 @@ if __name__ == "__main__":
         else:
             logger.warning("No records found after transformations.")
 
-        logger.info(f"Is target path absolute? {os.path.isabs(target_path)}")
-        logger.info(f"Does target path exist before writing? {os.path.exists(target_path)}")
-
     except Exception as e:
         logger.error(f"Error in main execution: {str(e)}")
         logger.error(traceback.format_exc())  # Capture full stack trace

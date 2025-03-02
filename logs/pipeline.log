@@ -25,3 +25,27 @@ Sample data:
 2025-02-08 08:13:47,056 - INFO - 
 Sample data:
 2025-02-08 08:13:47,237 - INFO - Closing down clientserver connection
+2025-03-02 11:10:42,545 - INFO - Starting Spark session...
+2025-03-02 11:10:52,716 - INFO - Reading data from: None
+2025-03-02 11:10:53,352 - ERROR - Error in main execution: [UNABLE_TO_INFER_SCHEMA] Unable to infer schema for CSV. It must be specified manually.
+2025-03-02 11:10:53,357 - ERROR - Traceback (most recent call last):
+  File "/Users/rohit/Data_Engineering_Project/notebooks/pipeline.py", line 26, in <module>
+    df_raw = read_csv_data(spark, raw_data_path)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rohit/Data_Engineering_Project/notebooks/utils.py", line 18, in wrapper
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rohit/Data_Engineering_Project/notebooks/utils.py", line 44, in read_csv_data
+    .load(path)
+     ^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/pyspark/sql/readwriter.py", line 314, in load
+    return self._df(self._jreader.load())
+                    ^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/py4j/java_gateway.py", line 1322, in __call__
+    return_value = get_return_value(
+                   ^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/pyspark/errors/exceptions/captured.py", line 185, in deco
+    raise converted from None
+pyspark.errors.exceptions.captured.AnalysisException: [UNABLE_TO_INFER_SCHEMA] Unable to infer schema for CSV. It must be specified manually.
+
+2025-03-02 11:10:53,357 - INFO - Closing down clientserver connection
