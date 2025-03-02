@@ -1,6 +1,6 @@
 import logging
 import traceback
-from notebooks.utils import *
+from utils import *
 
 # Log File Path
 LOG_FILE = "../logs/pipeline.log"
