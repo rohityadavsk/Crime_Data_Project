@@ -39,4 +39,4 @@ jobs:
       - name: Transform and write data
         env:
           target_path: "data/output"
-          run: python notebooks/pipeline.py
+        run: python notebooks/pipeline.py
