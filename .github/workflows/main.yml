@@ -32,7 +32,7 @@ jobs:
       - name: Transform and write data
         run: python notebooks/pipeline.py
 
-  Report on Teams:
+  Report_on_Teams:
     needs: [Testing, Dev]
     if: failure()
     uses: ./.github/workflows/send-teams-message.yml
