@@ -22,14 +22,14 @@ jobs:
       - name: Format Adaptive Card JSON
         run: |
           STATUS_COLOR="#008000"  # Green for success
-          if [[ "${{ inputs.status }}" == "Failure" ]]; then
+          if [[ "Success" == "Failure" ]]; then
             STATUS_COLOR="#FF0000"  # Red for failure
           fi
-
+          
           JSON=$(jq -n \
-            --arg jobName "${{ inputs.job_name }}" \
-            --arg status "${{ inputs.status }}" \
-            --arg failureReason "${{ inputs.failure_reason || 'N/A' }}" \
+            --arg jobName "Test Job" \
+            --arg status "Success" \
+            --arg failureReason "No reason" \
             --arg statusColor "$STATUS_COLOR" \
             '{
               "@type": "MessageCard",
@@ -39,15 +39,17 @@ jobs:
               "title": "GitHub Actions Job Status",
               "sections": [
                 {
-                  "activityTitle": "**Job:** " + $jobName,
-                  "activitySubtitle": "**Status:** " + $status,
+                  "activityTitle": "**Job:** \($jobName)",
+                  "activitySubtitle": "**Status:** \($status)",
                   "facts": [
                     {"name": "Failure Reason", "value": $failureReason}
                   ]
                 }
               ]
             }')
+          
           echo "$JSON" > message.json
+
 
       - name: Send Message to Teams
         run: |
