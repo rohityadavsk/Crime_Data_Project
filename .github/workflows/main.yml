@@ -26,8 +26,18 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Checkout code and install dependencies
+      - name: Install dependencies
         uses: ./.github/actions/install-dependencies
 
       - name: Transform and write data
         run: python notebooks/pipeline.py
+
+  Report on Teams:
+    needs: [Testing, Dev]
+    if: failure()
+    uses: ./.github/workflows/send-teams-message.yml
+    with:
+      job_name: Test Job
+      status: Success
+      failure_reason: No reason
+    secrets: inherit

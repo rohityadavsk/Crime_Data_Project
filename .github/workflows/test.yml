@@ -19,7 +19,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Checkout code and install dependencies
+      - name: Install dependencies
         uses: ./.github/actions/install-dependencies
 
       - name: Test Data

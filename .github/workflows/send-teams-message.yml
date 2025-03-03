@@ -1,0 +1,56 @@
+name: Send Teams Message
+on:
+  workflow_call:
+    inputs:
+      job_name:
+        required: true
+        type: string
+      status:
+        required: true
+        type: string
+      failure_reason:
+        required: false
+        type: string
+    secrets:
+      TEAMS_WEBHOOK_URL:
+        required: true
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Format Adaptive Card JSON
+        run: |
+          STATUS_COLOR="#008000"  # Green for success
+          if [[ "${{ inputs.status }}" == "Failure" ]]; then
+            STATUS_COLOR="#FF0000"  # Red for failure
+          fi
+
+          JSON=$(jq -n \
+            --arg jobName "${{ inputs.job_name }}" \
+            --arg status "${{ inputs.status }}" \
+            --arg failureReason "${{ inputs.failure_reason || 'N/A' }}" \
+            --arg statusColor "$STATUS_COLOR" \
+            '{
+              "@type": "MessageCard",
+              "@context": "http://schema.org/extensions",
+              "summary": "GitHub Actions Job Status",
+              "themeColor": $statusColor,
+              "title": "GitHub Actions Job Status",
+              "sections": [
+                {
+                  "activityTitle": "**Job:** " + $jobName,
+                  "activitySubtitle": "**Status:** " + $status,
+                  "facts": [
+                    {"name": "Failure Reason", "value": $failureReason}
+                  ]
+                }
+              ]
+            }')
+          echo "$JSON" > message.json
+
+      - name: Send Message to Teams
+        run: |
+          curl -H "Content-Type: application/json" \
+               -d @message.json \
+               ${{ secrets.TEAMS_WEBHOOK_URL }}
