@@ -24,8 +24,7 @@ jobs:
           STATUS_COLOR="#008000"  # Green for success
           if [[ "Success" == "Failure" ]]; then
             STATUS_COLOR="#FF0000"  # Red for failure
-          fi
-          
+          fi         
           JSON=$(jq -n \
             --arg jobName "Test Job" \
             --arg status "Success" \
@@ -46,10 +45,8 @@ jobs:
                   ]
                 }
               ]
-            }')
-          
+            }')       
           echo "$JSON" > message.json
-
 
       - name: Send Message to Teams
         run: |
