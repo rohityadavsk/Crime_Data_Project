@@ -29,7 +29,7 @@ def test_standardize_column_names(spark):
 
 # Test if CSV file reading works
 def test_read_csv_data(spark):
-    df = read_csvaa_data(spark, raw_data_path)
+    df = read_csv_data(spark, raw_data_path)
 
     # Check if DataFrame is not empty
     assert df.count() > 0
